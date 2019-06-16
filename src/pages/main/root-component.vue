@@ -1,7 +1,7 @@
 <template>
   <div class="component">
-    <cu-custom bgColor="bg-gradual-blue" :isBack="true">
-      <!--      <block slot="backText">返回</block>-->
+    <cu-custom bgColor="bg-red" :isBack="true">
+      <block slot="backText">返回</block>
       <block slot="content">导航栏</block>
     </cu-custom>
 
@@ -31,47 +31,50 @@
 </template>
 
 <script type="text/ecmascript-6">
-export default {
-  name: 'index',
-  components: {},
-  props: {},
-  data() {
-    return {
-      currentIndex: 0,
-    }
-  },
-  watch: {},
-  computed: {},
-  methods: {
-    navChange(index) {
-      this.currentIndex = index
+  export default {
+    name: 'index',
+    components: {},
+    props: {},
+    data() {
+      return {
+        currentIndex: 0,
+      }
     },
-  },
-  created() {
-    console.log(getApp().globalData)
-  },
-  mounted() {
+    watch: {},
+    computed: {},
+    methods: {
+      navChange(index) {
+        this.currentIndex = index
+      },
+      showDrawer(){
+
+      }
+    },
+    created() {
+      console.log(getApp().globalData)
+    },
+    mounted() {
+    }
   }
-}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 
-.component
-  position fixed
-  width 100%
-  height 100%
-  display flex
-  flex-direction column
-
-  .content-scroll
-    background-color #5e00ff
+  .component
+    position fixed
     width 100%
-    height 0
-    flex 1
+    height 100%
+    display flex
+    flex-direction column
 
-    .content
+    .content-scroll
+      background-color #5e00ff
       width 100%
-      height 4000 rpx
+      height 0
+      flex 1
+
+      .content
+        width 100%
+        height 4000 rpx
 </style>
 

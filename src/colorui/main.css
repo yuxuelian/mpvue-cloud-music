@@ -1584,6 +1584,10 @@ button.cuIcon.lg {
 }
 
 .cu-bar .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 	position: absolute;
 	text-align: center;
 	width: calc(100% - 340rpx);
@@ -1865,9 +1869,9 @@ button.cuIcon.lg {
 }
 
 /* #ifdef MP-ALIPAY */
-.cu-custom .cu-bar .action .cuIcon-back {
-	opacity: 0;
-}
+/*.cu-custom .cu-bar .action .cuIcon-back {*/
+/*	opacity: 0;*/
+/*}*/
 
 /* #endif */
 
