@@ -2,96 +2,31 @@
   <block>
     <scroll-view scroll-y class="drawer-page" :class="isShowDrawer?'show':''">
       <div class="cu-custom" :style="[{height:CustomBar + 'px'}]">
-        <div class="cu-bar fixed" :style="style" :class="[bgImage?'none-bg text-white bg-img':'','bg-red']">
+        <div class="cu-bar fixed" :style="style"
+             :class="[bgImage?'none-bg text-white bg-img':'','bg-red']">
           <div class="action" @click="leftIconClick">
             <p class="cuIcon-pullleft"></p>
           </div>
 
           <div :style="[{top:StatusBar + 'px'}]">
-            <span class="action-item" :class="currentIndex===0?'select':''"
-                  @click="clickTopItem(0)">我的</span>
-            <span class="action-item" :class="currentIndex===1?'select':''"
-                  @click="clickTopItem(1)">发现</span>
+            <span class="action-item" :class="actionCurrent===0?'select':''"
+                  @click="clickTopItem(0)">发现</span>
+            <span class="action-item" :class="actionCurrent===1?'select':''"
+                  @click="clickTopItem(1)">我的</span>
           </div>
         </div>
       </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
+      <div v-show="actionCurrent===0">
+        <discover-component></discover-component>
       </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
+      <div v-show="actionCurrent===1">
+        <mine-component></mine-component>
       </div>
     </scroll-view>
 
-    <scroll-view scroll-y class="drawer-window cu-card bg-gradual-red" :class="isShowDrawer?'show':''">
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
+    <scroll-view scroll-y class="drawer-window cu-card bg-gradual-red"
+                 :class="isShowDrawer?'show':''">
 
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
-
-      <div class='padding margin text-center'>
-        <div class='cu-btn bg-green lg block shadow radius margin-xl' @click="toHome">
-          跳转首页
-        </div>
-      </div>
     </scroll-view>
 
     <!-- 点击关闭侧滑菜单按钮 -->
@@ -102,16 +37,19 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import DiscoverComponent from "./components/discover-component";
+  import MineComponent from "./components/mine-component";
+
   export default {
     name: 'index',
-    components: {},
+    components: {MineComponent, DiscoverComponent},
     props: {},
     data() {
       return {
         StatusBar: this.StatusBar,
         CustomBar: this.CustomBar,
         isShowDrawer: false,
-        currentIndex: 0
+        actionCurrent: 0,
       }
     },
     watch: {},
@@ -144,8 +82,8 @@
         console.log('外部事件响应')
       },
       clickTopItem(index) {
-        this.currentIndex = index
-      }
+        this.actionCurrent = index
+      },
     },
     created() {
 
@@ -171,7 +109,7 @@
 
     .action-item
       color #D0D0D0
-      font-size 32rpx
+      font-size 32 rpx
       margin-right 20px
 
       &:last-child

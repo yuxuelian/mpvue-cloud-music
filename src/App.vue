@@ -27,4 +27,6 @@
   @import "colorui/main.css";
   @import "colorui/icon.css";
 
+  page
+    font-size 16PX
 </style>

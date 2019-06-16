@@ -37,7 +37,7 @@
     props: {},
     data() {
       return {
-        currentIndex: 0,
+        actionCurrent: 0,
       }
     },
     watch: {},
@@ -51,7 +51,6 @@
       }
     },
     created() {
-      console.log(getApp().globalData)
     },
     mounted() {
     }
