@@ -109,7 +109,6 @@
 
     .action-item
       color #D0D0D0
-      font-size 32 rpx
       margin-right 20px
 
       &:last-child

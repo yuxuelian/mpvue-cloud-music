@@ -46,7 +46,7 @@
       navChange(index) {
         this.currentIndex = index
       },
-      showDrawer(){
+      showDrawer() {
 
       }
     },
@@ -74,6 +74,6 @@
 
       .content
         width 100%
-        height 4000 rpx
+        height 4000px
 </style>
 
