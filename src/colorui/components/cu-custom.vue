@@ -1,6 +1,6 @@
 <template>
   <div class="cu-custom" :style="[{height:CustomBar + 'px'}]">
-    <div class="cu-bar fixed" :style="style"
+    <div class="cu-bar fixed text-white" :style="style"
          :class="[bgImage?'none-bg text-white bg-img':'',bgColor]">
       <div class="action" @click="backPage" v-if="isBack">
         <span class="cuIcon-back"></span>
@@ -20,53 +20,53 @@
 </template>
 
 <script type="text/ecmascript-6">
-  export default {
-    data() {
-      return {
-        StatusBar: this.StatusBar,
-        CustomBar: this.CustomBar
-      };
-    },
-    name: 'cu-custom',
-    computed: {
-      style() {
-        const StatusBar = this.StatusBar;
-        const CustomBar = this.CustomBar;
-        const bgImage = this.bgImage;
-        let style = `height:${CustomBar}px;padding-top:${StatusBar}px;`;
-        if (this.bgImage) {
-          style = `${style}background-image:url(${bgImage});`;
-        }
-        return style
+export default {
+  data() {
+    return {
+      StatusBar: this.StatusBar,
+      CustomBar: this.CustomBar
+    };
+  },
+  name: 'cu-custom',
+  computed: {
+    style() {
+      const StatusBar = this.StatusBar;
+      const CustomBar = this.CustomBar;
+      const bgImage = this.bgImage;
+      let style = `height:${CustomBar}px;padding-top:${StatusBar}px;`;
+      if (this.bgImage) {
+        style = `${style}background-image:url(${bgImage});`;
       }
+      return style
+    }
+  },
+  props: {
+    bgColor: {
+      type: String,
+      default: ''
     },
-    props: {
-      bgColor: {
-        type: String,
-        default: ''
-      },
-      isBack: {
-        type: [Boolean, String],
-        default: false
-      },
-      isLeftIcon: {
-        type: [Boolean, String],
-        default: false
-      },
-      bgImage: {
-        type: String,
-        default: ''
-      },
+    isBack: {
+      type: [Boolean, String],
+      default: false
     },
-    methods: {
-      backPage() {
-        mpvue.navigateBack();
-      },
-      leftIconClick(e) {
-        this.$emit('menuAction', e)
-      }
+    isLeftIcon: {
+      type: [Boolean, String],
+      default: false
+    },
+    bgImage: {
+      type: String,
+      default: ''
+    },
+  },
+  methods: {
+    backPage() {
+      mpvue.navigateBack();
+    },
+    leftIconClick(e) {
+      this.$emit('menuAction', e)
     }
   }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>

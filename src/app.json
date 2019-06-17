@@ -1,7 +1,11 @@
 {
   "pages": [
-    "pages/drawer/index",
-    "pages/main/index"
+    "pages/home/index",
+    "pages/day-recomend/index",
+    "pages/song-list/index",
+    "pages/rank-list/index",
+    "pages/broad-station/index",
+    "pages/template/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
