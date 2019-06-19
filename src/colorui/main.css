@@ -626,8 +626,8 @@ radio.white.checked .uni-radio-input {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    padding: 0 30rpx;
-    font-size: 28rpx;
+    padding: 0 40rpx;
+    font-size: 24rpx;
     height: 64rpx;
     line-height: 1;
     text-align: center;
@@ -2897,6 +2897,7 @@ scroll-view.cu-steps .cu-item {
 
 .grid {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <scroll-view scroll-y class="discover-component">
+  <div class="discover-component">
     <swiper-component
     :swiperData="swiperData"
     @swiperClick="swiperClick"
@@ -63,7 +63,7 @@
     @selectItem="selectItem3"
     >
     </grid-component>
-  </scroll-view>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -214,7 +214,6 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 .discover-component
   width 100%
-  height 100%
   display flex
   flex-direction column
 </style>

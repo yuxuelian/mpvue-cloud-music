@@ -1,7 +1,7 @@
 <template>
   <drawer-component ref="drawerComponent">
     <block slot="drawerPage">
-      <div class="flex-row">
+      <div class="flex-column">
         <cu-custom bgColor="bg-cloud-red" :isBack="true">
           <block slot="backText">返回</block>
           <block slot="content">电台</block>
@@ -12,7 +12,7 @@
     </block>
 
     <block slot="drawerWindow">
-      <div class="flex-row bg-gradual-blue">
+      <div class="flex-column bg-gradual-blue">
       </div>
     </block>
   </drawer-component>

@@ -1,7 +1,7 @@
 <template>
   <drawer-component ref="drawerComponent">
     <block slot="drawerPage">
-      <div class="flex-row">
+      <div class="flex-column">
         <div class="cu-custom" :style="[{height:CustomBar + 'px'}]">
           <div class="cu-bar fixed bg-cloud-red" :style="style">
             <div class="action" @click.prevent.stop="leftIconClick">
@@ -28,7 +28,7 @@
     </block>
 
     <block slot="drawerWindow">
-      <div class="flex-row bg-gradual-blue">
+      <div class="flex-column bg-gradual-blue">
       </div>
     </block>
   </drawer-component>

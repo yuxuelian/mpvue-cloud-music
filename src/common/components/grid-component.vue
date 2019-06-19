@@ -1,5 +1,5 @@
 <template>
-  <div class="grid col-3 margin-bottom text-center">
+  <div class="grid col-3">
     <div class="padding-xs" v-for="(item,index) in gridData" :key="item.id"
          @click="clickItem(index)">
       <img :src="item.imageUrl" mode="widthFix"/>

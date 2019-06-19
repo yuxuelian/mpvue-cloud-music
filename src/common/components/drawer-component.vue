@@ -1,21 +1,29 @@
 <template>
   <div class="drawer-container">
     <!-- 底层Page -->
-    <div class="drawer-page-container" :class="isShowDrawer?'show':''">
+    <scroll-view
+    scroll-y
+    class="drawer-page-container bg-white"
+    :class="isShowDrawer?'show':''"
+    >
       <slot name="drawerPage"></slot>
-    </div>
+    </scroll-view>
 
     <!-- 遮罩层 -->
     <div class="drawer-shadow" :class="isShowDrawer?'show':''" @click="hideDrawer">
-      <div class="cuIcon-pullright hide-icon-btn">
+      <div class="cuIcon-pullright text-white hide-icon-btn">
         <span @click.stop="clickIntercept2"></span>
       </div>
     </div>
 
     <!-- 侧边栏层 -->
-    <div class="drawer-window-container" :class="isShowDrawer?'show':''">
+    <scroll-view
+    scroll-y
+    class="drawer-window-container bg-gradual-blue"
+    :class="isShowDrawer?'show':''"
+    >
       <slot name="drawerWindow"></slot>
-    </div>
+    </scroll-view>
   </div>
 </template>
 
@@ -36,7 +44,7 @@ export default {
       console.log('showDrawer')
       this.isShowDrawer = true
     },
-    clickIntercept2(){
+    clickIntercept2() {
       console.log('拦截2')
     }
   },
@@ -55,7 +63,6 @@ export default {
     height 100%
     left 0
     top 0
-    background-color white
     transition transform 0.4s
     transform translateX(0%)
     pointer-events all
@@ -90,22 +97,20 @@ export default {
       bottom 30px
       right 12px
       font-size 30px
-      color white
 
   .drawer-window-container
     position absolute
     width 85%
     height 100%
     top 0
-    left 0
+    left -100%
     opacity 0
-    transform translateX(-100%)
     transition all 0.4s
-    background-color white
     pointer-events none
 
     &.show
       transform translateX(0%)
+      left 0
       opacity 1
       pointer-events all
 </style>

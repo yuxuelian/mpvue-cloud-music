@@ -16,7 +16,7 @@
         {{item.name}}
       </div>
     </scroll-view>
-    <div class="right-btn" @click="clickRightBtn">
+    <div class="right-btn" @click="clickTabRightBtn">
       <i class="cuIcon-apps text-cloud-red btn-icon"></i>
     </div>
   </div>
@@ -43,11 +43,11 @@ export default {
   methods: {
     tabSelect(index) {
       this.currentIndex = index
-      this.scrollLeft = (index - 1) * 70
+      this.scrollLeft = (index - 1) * 50
       this.$emit('selectChange', index)
     },
-    clickRightBtn(){
-      this.$emit('clickRightBtn')
+    clickTabRightBtn(){
+      this.$emit('clickTabRightBtn')
     }
   },
   created() {
@@ -65,6 +65,7 @@ export default {
 
   .tab-layout
     flex 1
+    height 90rpx
     width 0
 
   .right-btn
