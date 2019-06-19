@@ -20,7 +20,7 @@
         <img
         v-if="item.type==='image'"
         :src="item.imageUrl"
-        mode="aspectFill"
+        mode="widthFix"
         alt="轮播图"
         />
         <video

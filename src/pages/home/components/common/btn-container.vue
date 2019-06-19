@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-container solid-bottom">
+  <div class="btn-container">
     <div class="btn-item-container" v-for="(item,index) in btnData" :key="item.id">
       <div class="image-container" @click="selectBtn(index,e)">
         <img class="image" :src="item.imageSrc">

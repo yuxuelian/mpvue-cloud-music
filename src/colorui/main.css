@@ -1551,7 +1551,7 @@ button.cuIcon.lg {
 }
 
 .cu-bar .action:first-child {
-    margin-left: 30rpx;
+    margin-left: 20rpx;
     font-size: 30rpx;
 }
 
@@ -1664,7 +1664,7 @@ button.cuIcon.lg {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1024;
+    z-index: 100;
     box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
 }
 
@@ -2595,7 +2595,7 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
 }
 
 .card-swiper {
-    height: 420rpx !important;
+    height: 340rpx !important;
 }
 
 .card-swiper swiper-item {
@@ -2609,8 +2609,7 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
 .card-swiper swiper-item .swiper-item {
     width: 100%;
     display: block;
-    height: 100%;
-    border-radius: 10rpx;
+    border-radius: 15rpx;
     transform: scale(0.9);
     transition: all 0.2s ease-in 0s;
     overflow: hidden;

@@ -1,7 +1,7 @@
 <template>
-  <div class="list-title-component solid-bottom">
+  <div class="list-title-component solid-top solid-bottom">
     <div class='action'>
-      <span class='cuIcon-titles cloud-red'></span>
+      <span class='cuIcon-titles text-cloud-red'></span>
       <span class="text-lg text-black">{{title}}</span>
     </div>
 

@@ -200,13 +200,13 @@ export default {
     }
   },
   created() {
+  },
+  mounted() {
     this.requestBannerData()
     this.requestHotSongList()
     this.requestHotMvList()
     this.requestDjprogramList()
     this.requestPrivatecontentList()
-  },
-  mounted() {
   }
 }
 </script>

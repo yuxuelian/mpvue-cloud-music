@@ -3,7 +3,7 @@
     <div class="cu-bar fixed text-white" :style="style"
          :class="[bgImage?'none-bg text-white bg-img':'',bgColor]">
       <div class="action" @click="backPage" v-if="isBack">
-        <span class="cuIcon-back"></span>
+        <i class="cuIcon-back margin-right-xs"></i>
         <slot name="backText"></slot>
       </div>
 

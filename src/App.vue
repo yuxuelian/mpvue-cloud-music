@@ -29,13 +29,19 @@ export default {
 page
   font-size 16PX
 
-.cloud-red
+.text-cloud-red
   color #D33A31
 
-.cloud-red-bg
+.bg-cloud-red
   background-color  #D33A31
 
 .text-black
   color #303030
+
+.flex-row
+  width 100%
+  height 100%
+  display flex
+  flex-direction column
 
 </style>
