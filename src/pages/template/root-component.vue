@@ -1,6 +1,6 @@
 <template>
   <div class="root-component">
-    <cu-custom bgColor="bg-gradual-pink" :isBack="true">
+    <cu-custom bgColor="bg-cloud-red" :isBack="true">
       <div slot="backText">返回</div>
       <div slot="content">模板页</div>
     </cu-custom>

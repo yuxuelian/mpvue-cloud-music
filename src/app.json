@@ -5,6 +5,7 @@
     "pages/song-list/index",
     "pages/rank-list/index",
     "pages/broad-station/index",
+    "pages/song-list-detail/index",
     "pages/template/index"
   ],
   "window": {

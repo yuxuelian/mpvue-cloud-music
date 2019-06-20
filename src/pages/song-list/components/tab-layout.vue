@@ -10,8 +10,8 @@
       v-for="(item,index) in tabData"
       :key="item.id"
       class="cu-item"
-      :class="currentIndex===index?'text-cloud-red cur':''"
-      @click="tabSelect(index,e)"
+      :class="currentTabIndex===index?'text-cloud-red cur':''"
+      @click="tabSelectChange(index,e)"
       >
         {{item.name}}
       </div>
@@ -30,23 +30,28 @@ export default {
     tabData: {
       type: Array,
       required: true
+    },
+    currentTabIndex: {
+      type: Number,
+      default() {
+        return 0
+      }
     }
   },
   data() {
-    return {
-      currentIndex: 0,
-      scrollLeft: 0,
-    }
+    return {}
   },
   watch: {},
-  computed: {},
+  computed: {
+    scrollLeft() {
+      return (this.currentTabIndex - 1) * 50
+    }
+  },
   methods: {
-    tabSelect(index) {
-      this.currentIndex = index
-      this.scrollLeft = (index - 1) * 50
-      this.$emit('selectChange', index)
+    tabSelectChange(index) {
+      this.$emit('tabSelectChange', index)
     },
-    clickTabRightBtn(){
+    clickTabRightBtn() {
       this.$emit('clickTabRightBtn')
     }
   },

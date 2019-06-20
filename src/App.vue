@@ -10,6 +10,7 @@ export default {
      * 百度：mpvue === swan, mpvuePlatform === 'swan'
      * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
      */
+    // mpvue.clearStorage()
     mpvue.getSystemInfo({
       success(e) {
         Vue.prototype.StatusBar = e.statusBarHeight;

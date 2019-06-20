@@ -1,7 +1,7 @@
 <template>
   <swiper class="card-swiper round-dot"
           indicator-dots="true"
-          current="0"
+          :current="currentIndex"
           circular="true"
           autoplay="true"
           interval="5000"
@@ -16,12 +16,14 @@
     @click="swiperClick"
     :class="currentIndex===index?'cur':''"
     >
-      <div class="swiper-item">
+      <div class="swiper-item swiper-item-container">
         <img
+        lazy-load="true"
         v-if="item.type==='image'"
         :src="item.imageUrl"
         mode="widthFix"
         alt="轮播图"
+        class="swiper-view"
         />
         <video
         v-if="item.type==='video'"
@@ -32,6 +34,7 @@
         :show-play-btn="false"
         :controls="false"
         objectFit="cover"
+        class="swiper-view"
         >
         </video>
       </div>
@@ -41,7 +44,7 @@
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'swiper-component',
+  name: 'banner-component',
   components: {},
   props: {
     swiperData: {
@@ -64,6 +67,10 @@ export default {
       const index = e.target.current
       this.currentIndex = index
       this.$emit('swiperChange', index)
+    },
+    selectIndex(index) {
+      // 指定选择页面
+      this.currentIndex = index
     }
   },
   created() {
@@ -74,6 +81,16 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+.swiper-item-container
+  position relative
+  width 100%
+  padding-bottom 36.8%
 
+  .swiper-view
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 100%
 </style>
 

@@ -19,7 +19,7 @@
     <!-- 侧边栏层 -->
     <scroll-view
     scroll-y
-    class="drawer-window-container bg-gradual-blue"
+    class="drawer-window-container bg-white"
     :class="isShowDrawer?'show':''"
     >
       <slot name="drawerWindow"></slot>
@@ -37,15 +37,12 @@ export default {
   },
   methods: {
     hideDrawer() {
-      console.log('hideDrawer')
       this.isShowDrawer = false
     },
     showDrawer() {
-      console.log('showDrawer')
       this.isShowDrawer = true
     },
     clickIntercept2() {
-      console.log('拦截2')
     }
   },
 }

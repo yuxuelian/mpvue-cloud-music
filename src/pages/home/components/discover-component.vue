@@ -1,10 +1,10 @@
 <template>
   <div class="discover-component">
-    <swiper-component
+    <banner-component
     :swiperData="swiperData"
     @swiperClick="swiperClick"
     >
-    </swiper-component>
+    </banner-component>
 
     <btn-container
     :btnData="btnData"
@@ -21,7 +21,7 @@
 
     <grid-component
     :gridData="hotSongList.slice(0,6)"
-    @selectItem="selectItem1"
+    @selectGridItem="selectGridItem0"
     >
     </grid-component>
 
@@ -34,7 +34,7 @@
 
     <grid-component
     :gridData="hotMvList.slice(0,3)"
-    @selectItem="selectItem2"
+    @selectGridItem="selectGridItem1"
     >
     </grid-component>
 
@@ -47,7 +47,7 @@
 
     <grid-component
     :gridData="djprogramList.slice(0,6)"
-    @selectItem="selectItem3"
+    @selectGridItem="selectGridItem2"
     >
     </grid-component>
 
@@ -60,15 +60,15 @@
 
     <grid-component
     :gridData="privatecontentList.slice(0,6)"
-    @selectItem="selectItem3"
+    @selectGridItem="selectGridItem3"
     >
     </grid-component>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import SwiperComponent from 'common/components/swiper-component'
-import BtnContainer from "./common/btn-container"
+import BannerComponent from './banner-component'
+import BtnContainer from "./btn-container"
 import ListTitleComponent from "common/components/list-title-component"
 import GridComponent from "common/components/grid-component"
 export default {
@@ -77,7 +77,7 @@ export default {
     GridComponent,
     ListTitleComponent,
     BtnContainer,
-    SwiperComponent
+    BannerComponent
   },
   props: {},
   data() {
@@ -132,14 +132,20 @@ export default {
     clickMore2() {
       console.log('点击第二个更多')
     },
-    selectItem1(index) {
-      console.log('点击0  index = ' + index)
+    selectGridItem0(index) {
+      const playlistId = this.hotSongList[index].id
+      mpvue.navigateTo({
+        url: `/pages/song-list-detail/index?playlistId=${playlistId}`
+      })
     },
-    selectItem2(index) {
+    selectGridItem1(index) {
       console.log('点击1  index = ' + index)
     },
-    selectItem3(index) {
+    selectGridItem2(index) {
       console.log('点击2  index = ' + index)
+    },
+    selectGridItem3(index){
+      console.log('点击3  index = ' + index)
     },
     async requestBannerData() {
       // 获取轮播图

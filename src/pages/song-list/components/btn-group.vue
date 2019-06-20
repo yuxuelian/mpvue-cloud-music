@@ -5,7 +5,7 @@
       <button
       v-for="(item,index) in groupData"
       :key="index"
-      class="cu-btn round bg-red nav text-sm text-center margin-tb-xs"
+      class="cu-btn round nav text-sm text-center margin-tb-xs text-white bg-gradual-pink"
       @click="selectPlaylist(item.name)"
       >
         {{item.name}}
@@ -73,24 +73,9 @@ const colorList = [
     color: '#a5673f'
   },
   {
-    title: '玄灰',
-    name: 'grey',
-    color: '#8799a3'
-  },
-  {
-    title: '草灰',
-    name: 'gray',
-    color: '#aaaaaa'
-  },
-  {
     title: '墨黑',
     name: 'black',
     color: '#333333'
-  },
-  {
-    title: '雅白',
-    name: 'white',
-    color: '#ffffff'
   },
 ]
 export default {
@@ -114,11 +99,18 @@ export default {
   methods: {
     selectPlaylist(name) {
       this.$emit('selectPlaylist', name)
+    },
+    randomColorClass() {
+      const index = Math.floor(Math.random() * colorList.length)
+      return `bg-${colorList[index].name}`
     }
   },
   created() {
   },
   mounted() {
+    this.groupData.forEach((item)=>{
+      item.colorClass = this.randomColorClass()
+    })
   }
 }
 </script>

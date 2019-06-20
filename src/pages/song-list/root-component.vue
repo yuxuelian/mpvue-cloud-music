@@ -1,23 +1,47 @@
 <template>
   <drawer-component ref="drawerComponent">
     <block slot="drawerPage">
-      <div class="flex-column">
+      <div class="drawer-page-content">
         <cu-custom bgColor="bg-cloud-red" :isBack="true">
           <block slot="backText">返回</block>
           <block slot="content">歌单广场</block>
         </cu-custom>
         <tab-layout
+        ref="tabLayout"
         :tabData="hotPlaylist"
+        :currentTabIndex="currentPageIndex"
         @clickTabRightBtn="clickTabRightBtn"
-        @selectChange="selectChange"
+        @tabSelectChange="tabSelectChange"
         >
         </tab-layout>
-        <grid-component :gridData="playlistData"></grid-component>
+
+        <swiper
+        class="swiper"
+        :current="currentPageIndex"
+        @change="pageSelected"
+        >
+          <swiper-item
+          class="swiper-item"
+          v-for="(playlistData,index) in hotPlaylist"
+          :key="index"
+          >
+            <scroll-view
+            scroll-y
+            class="swiper-item-content"
+            >
+              <grid-component
+              :gridData="playlistData.listData"
+              @selectGridItem="selectGridItem"
+              >
+              </grid-component>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
       </div>
     </block>
 
     <block slot="drawerWindow">
-      <div class="flex-column" :style="[{'padding-top':StatusBar + 'px'}]">
+      <div class="flex-column bg-gradual-blue" :style="[{'padding-top':StatusBar + 'px'}]">
         <btn-group
         v-for="(item,index) in allPlaylist"
         :key="index"
@@ -45,7 +69,8 @@ export default {
       StatusBar: this.StatusBar,
       hotPlaylist: [],
       allPlaylist: [],
-      playlistData: [],
+      playlistDatas: [],
+      currentPageIndex: 0
     }
   },
   watch: {},
@@ -54,13 +79,21 @@ export default {
     clickTabRightBtn() {
       this.$refs.drawerComponent.showDrawer()
     },
-    selectChange(index) {
-      this.requestPlaylistData(this.hotPlaylist[index].name, 30)
+    tabSelectChange(index) {
+      this.currentPageIndex = index
     },
     selectPlaylist(name) {
       console.log('选择的歌单是 name = ' + name)
       this.$refs.drawerComponent.hideDrawer()
-      this.requestPlaylistData(name, 30)
+    },
+    selectGridItem(index) {
+      const playlistId = this.hotPlaylist[this.currentPageIndex].listData[index].id
+      mpvue.navigateTo({
+        url: `/pages/song-list-detail/index?playlistId=${playlistId}`
+      })
+    },
+    pageSelected(e) {
+      this.currentPageIndex = e.target.current
     },
     _groupBy(array, groupBy) {
       const res = []
@@ -85,28 +118,36 @@ export default {
       this.hotPlaylist = resData.data.tags.map((item) => {
         return {
           id: item.id,
-          name: item.name
+          name: item.name,
+          listData: []
         }
       })
-      this.requestPlaylistData(this.hotPlaylist[0].name, 30)
+      this.requestPlaylistData()
     },
     async requestAllPlaylist() {
       // 请求全部歌单
       const resData = (await this.$axios.get('/playlist/catlist')).data
       this.allPlaylist = this._groupBy(resData.sub, resData.categories)
     },
-    async requestPlaylistData(cat, limit) {
-      console.log('加载歌单信息 cat = ' + cat + 'limit = ' + limit)
-      const resData = (await this.$axios.get('/top/playlist?cat=' + cat + '&limit=' + limit)).data
-      console.log(resData)
-      this.playlistData = resData.playlists.map((item) => {
-        return {
-          id: item.id,
-          name: item.name,
-          imageUrl: item.coverImgUrl,
-        }
+    requestPlaylistData() {
+      const requests = this.hotPlaylist.map((playlist) => {
+        return this.$axios.get('/top/playlist?cat=' + playlist.name + '&limit=' + 30)
       })
-      console.log(this.playlistData)
+      // 同时发起请求
+      Promise.all(requests)
+        .then((resDatas) => {
+          this.hotPlaylist.forEach((playlist, index) => {
+            playlist.listData = resDatas[index].data.playlists.map((item) => {
+              return {
+                id: item.id,
+                name: item.name,
+                imageUrl: item.coverImgUrl,
+              }
+            })
+          })
+        })
+        .catch((error) => {
+        })
     }
   },
   beforeCreate() {
@@ -119,7 +160,8 @@ export default {
     console.log('song-list beforeMount')
   },
   mounted() {
-    console.log('song-list mounted')
+    // 启动的时候选择到第0页
+    this.currentPageIndex = 0
     this.requestPlaylistHot()
     this.requestAllPlaylist()
   },
@@ -178,8 +220,23 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-.root-component
+.drawer-page-content
   display flex
   flex-direction column
+  width 100%
+  height 100%
+
+  .swiper
+    width 100%
+    height 0
+    flex 1
+
+    .swiper-item
+      width 100%
+      height 100%
+
+      .swiper-item-content
+        width 100%
+        height 100%
 </style>
 

@@ -2,7 +2,10 @@
   <div class="grid col-3">
     <div class="padding-xs" v-for="(item,index) in gridData" :key="item.id"
          @click="clickItem(index)">
-      <img :src="item.imageUrl" mode="widthFix"/>
+      <div class="img-container">
+        <img lazy-load="true" class="img" :src="item.imageUrl" mode="widthFix" @load="loadComplete"
+             @error="loadError"/>
+      </div>
       <p class="text-cut text-sm text-black">{{item.name}}</p>
     </div>
   </div>
@@ -25,7 +28,13 @@ export default {
   computed: {},
   methods: {
     clickItem(index) {
-      this.$emit('selectItem', index)
+      this.$emit('selectGridItem', index)
+    },
+    loadComplete(e) {
+      // console.log('图片加载完成', e)
+    },
+    loadError(e) {
+      // console.log('图片加载失败', e)
     }
   },
   created() {
@@ -36,6 +45,16 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+.img-container
+  width 100%
+  padding-bottom 100%
+  position relative
 
+  .img
+    position absolute
+    width 100%
+    height 100%
+    left 0
+    top 0
 </style>
 
