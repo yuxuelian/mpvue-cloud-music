@@ -2,7 +2,7 @@
   <div class="btn-container">
     <div class="btn-item-container" v-for="(item,index) in btnData" :key="item.id">
       <div class="image-container" @click="selectBtn(index,e)">
-        <img lazy-load="true" class="image" :src="item.imageSrc">
+        <img lazy-load class="image" :src="item.imageSrc">
         <p v-if="index===0" class="current-day">{{currentDay}}</p>
       </div>
       <p class="btn-name text-black">{{item.name}}</p>

@@ -6,15 +6,24 @@
     </cu-custom>
 
     <div class="song-list">
-      <div v-for="item in playlistSongs" :key="item.id">{{item.name}}</div>
+      <song-list-title :songListCount="200" :likeCount="100"></song-list-title>
+      <song-item
+      v-for="(item,index) in playlistSongs"
+      :key="item.id"
+      :song="item"
+      :index="index"
+      >
+      </song-item>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import SongItem from "./components/song-item"
+import SongListTitle from "./components/song-list-title"
 export default {
   name: 'root-component',
-  components: {},
+  components: {SongListTitle, SongItem},
   props: {},
   data() {
     return {

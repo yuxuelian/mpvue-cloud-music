@@ -3808,6 +3808,36 @@ scroll-view.cu-steps .cu-item {
     overflow: hidden;
 }
 
+.text-line-1 {
+    overflow:hidden;
+    display:-webkit-box;
+    text-overflow:ellipsis;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    white-space:normal;
+
+}
+
+.text-line-2 {
+    overflow:hidden;
+    display:-webkit-box;
+    text-overflow:ellipsis;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    white-space:normal;
+
+}
+
+.text-line-3 {
+    overflow:hidden;
+    display:-webkit-box;
+    text-overflow:ellipsis;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    white-space:normal;
+
+}
+
 .text-bold {
     font-weight: bold;
 }

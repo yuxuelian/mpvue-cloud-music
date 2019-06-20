@@ -18,7 +18,7 @@
     >
       <div class="swiper-item swiper-item-container">
         <img
-        lazy-load="true"
+        lazy-load
         v-if="item.type==='image'"
         :src="item.imageUrl"
         mode="widthFix"

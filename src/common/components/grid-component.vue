@@ -3,10 +3,10 @@
     <div class="padding-xs" v-for="(item,index) in gridData" :key="item.id"
          @click="clickItem(index)">
       <div class="img-container">
-        <img lazy-load="true" class="img" :src="item.imageUrl" mode="widthFix" @load="loadComplete"
+        <img lazy-load class="img" :src="item.imageUrl" mode="widthFix" @load="loadComplete"
              @error="loadError"/>
       </div>
-      <p class="text-cut text-sm text-black">{{item.name}}</p>
+      <p class="text-sm text-black text-line-2">{{item.name}}</p>
     </div>
   </div>
 </template>
